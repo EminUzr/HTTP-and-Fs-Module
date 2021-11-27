@@ -1,6 +1,7 @@
 let http = require("http");
 let fs = require("fs");
 
+//server creation
 const server = http.createServer((req, res) => {
   const url = req.url;
   console.log("Welcome");
@@ -20,6 +21,8 @@ const server = http.createServer((req, res) => {
     res.statusCode = 404;
     res.write("<h1>404 Not Found</h1>");
   }
+  
+  //logging requests to a log file
   fs.appendFile(
     "logfile.log",
     `request: ${url} status: ${res.statusCode}\n`,
@@ -32,6 +35,7 @@ const server = http.createServer((req, res) => {
   res.end();
 });
 
+//port
 let port = 9000;
 
 server.listen(port, () => {
